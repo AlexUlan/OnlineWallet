@@ -1,24 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import "./App.css";
+import Drawers from "./components/Drawers/Drawers_Continer";
+import Main from "./components/Main/Main_Container";
+
 
 function App() {
+  useEffect(() => {
+    const user = {
+      login: "ulan",
+      password: "123",
+      data: {
+        cashe: {
+          income: "200usd",
+          consumption: "20USD"
+        },
+        category: 
+        { 
+          food: "125USD" 
+        }
+      }
+    };
+    var sterialObj = JSON.stringify(user);
+    localStorage.setItem("users", sterialObj);
+    var returnObj = JSON.parse(localStorage.getItem("users"));
+    console.log(returnObj);
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Drawers />
+      <Main/>
     </div>
   );
 }
