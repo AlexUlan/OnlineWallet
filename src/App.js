@@ -2,28 +2,31 @@ import React, { useEffect } from "react";
 import "./App.css";
 import Drawers from "./components/Drawers/Drawers_Continer";
 import Main from "./components/Main/Main_Container";
+import { getUserData } from "./redux/reducers/userInfoReducers";
+import { connect } from "react-redux";
 
 
-function App() {
+function App(props) {
   useEffect(() => {
-    const user = {
-      login: "ulan",
-      password: "123",
-      data: {
-        cashe: {
-          income: "200usd",
-          consumption: "20USD"
-        },
-        category: 
-        { 
-          food: "125USD" 
-        }
-      }
-    };
-    var sterialObj = JSON.stringify(user);
-    localStorage.setItem("users", sterialObj);
-    var returnObj = JSON.parse(localStorage.getItem("users"));
-    console.log(returnObj);
+    // const ulan = {
+    //   login: "ulan",
+    //   password: "123",
+    //   data: {
+    //     cashe: {
+    //       income: "200usd",
+    //       consumption: "20USD"
+    //     },
+    //     category: 
+    //     { 
+    //       food: "125USD" 
+    //     }
+    //   }
+    // };
+    // var sterialObj = JSON.stringify(ulan);
+    // localStorage.setItem("ulan", sterialObj);
+    // var returnObj = JSON.parse(localStorage.getItem("ulan"));
+    // console.log(returnObj);
+    props.getUserData("ulan", "123");
   });
 
   return (
@@ -34,4 +37,10 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = (state) =>{
+  return {
+
+  }
+}
+
+export default connect(mapStateToProps,{getUserData})(App);
